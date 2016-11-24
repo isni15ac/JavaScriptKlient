@@ -1,15 +1,16 @@
 
 $(document).ready(function () {
 
-  $("#loginButton").on("click", function(e){
+        //Login Button
+        $("#loginButton").on("click", function(e){
     e.preventDefault();
 
-    var email = $("#inputEmail").val();
-    var pw = $("#inputPassword").val();
+    var cbsMail = $("#inputEmail").val();
+    var password = $("#inputPassword").val();
 
-    SDK.login(email, pw, function(err, data){
+    SDK.login(cbsMail, password, function(err, data){
 
-      //On wrong credentials
+        //On wrong credentials
       if(err) {
         return $("#loginForm").find(".form-group").addClass("has-error");
       }
@@ -17,10 +18,11 @@ $(document).ready(function () {
       //Login OK!
       $("#loginForm").find(".form-group").addClass("has-success");
 
-      window.location.href = "admin.html";
+      window.location.href = "courses.html";
 
     });
 
-  });
+
+            })
 
 });

@@ -8,7 +8,7 @@
 
 
   <meta charset="UTF-8">
-  <title>Bøger</title>
+  <title>Courses</title>
 
 </head>
 <body>
@@ -28,35 +28,36 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Awesome Bookstore inc.</a>
+              <img alt="CBS Logo" id="logo" src="https://cas.cbs.dk/saml/module.php/cbs/img/cbs_logo_200x47.png">
           </div>
 
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="books.html">Se alle bøger <span class="sr-only">(current)</span></a></li>
-              <li><a href="#">Om os</a></li>
-              <li><a href="#">Kontakt</a></li>
-            </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="login.html">Login</a></li>
+              <li><a href="login.html">Logud</a></li>
             </ul>
           </div>
         </div>
       </nav>
 
-
       <div class="page-header">
-        <h1>Se alle bøger</h1>
+        <h1 style="color:blue;margin-left:0px;">Se alle kurser</h1>
       </div>
       <table class="table">
-        <thead>
-        <th>Titel</th>
-        <th>Undertitel</th>
-        <th>Forfatter(e)</th>
-        <th>Udgiver</th>
-        <th style="width: 75px;">Pris</th>
+
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Vælg Fag
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Makroøkonomi</a></li>
+            <li><a href="#">IT-forandringsledelse</a></li>
+            <li><a href="#">dynamisk</a></li>
+          </ul>
+        </div>
+
         </thead>
-        <tbody id="booksTableBody">
+        <tbody id="coursesTableBody">
 
         </tbody>
       </table>
@@ -68,14 +69,15 @@
 
 <footer class="footer">
   <div class="container">
-    <p class="text-muted">2016 © All rights reserved - Awesome Bookstore Inc.</p>
+    <p class="text-muted">2016 © All rights reserved - Undervisningsevaluering</p>
   </div>
 </footer>
+
 
 <script src="lib/js/jquery-3.1.1.js"></script>
 <script src="lib/js/bootstrap.js"></script>
 <script src="js/sdk.js"></script>
-<script src="js/books.page.js"></script>
+<script src="js/courses.js"></script>
 
 
 </body>

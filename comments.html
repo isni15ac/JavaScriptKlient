@@ -8,7 +8,7 @@
 
 
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Comments</title>
 
 </head>
 <body>
@@ -21,32 +21,47 @@
       <nav class="navbar navbar-inverse">
         <div class="container-fluid">
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-2">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Copenhagen Business School</a>
           </div>
 
-
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+            <img alt="CBS Logo" id="logo" src="https://cas.cbs.dk/saml/module.php/cbs/img/cbs_logo_200x47.png">
             <ul class="nav navbar-nav navbar-right">
-              <p><a class="btn btn-success btn-lg" href="Login.html">Login</a></p>
+              <li><a href="index.html">Logud</a></li>
             </ul>
           </div>
         </div>
       </nav>
 
-      <div class="jumbotron">
-        <h1>Velkommen til evaluering af undervisning på CBS!</h1>
-        <p>Her kan du logge ind som lærer eller studerende og se nærmere på de fag du er tildelt.</p>
 
+      <div class="page-header">
+        <h2>Alle kommentarer og bedømmelser</h2>
+      </div>
+      <table class="table">
+        <thead>
+
+        <div style="height:120px;width:400px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+            Makroøkonomi:
+
+          </div>
+          <br>
+
+          <div style="height:120px;width:400px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+            IT-forandringsledelse:
+            </div>
+
+        </thead>
+        <tbody id="coursesTableBody">
+        </tbody>
+      </table>
 
       </div>
-
-    </div>
   </div>
 </div>
 
@@ -59,6 +74,7 @@
 <script src="lib/js/jquery-3.1.1.js"></script>
 <script src="lib/js/bootstrap.js"></script>
 <script src="js/sdk.js"></script>
+
 
 </body>
 </html>
