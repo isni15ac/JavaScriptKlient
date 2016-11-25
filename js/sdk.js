@@ -8,7 +8,7 @@ var SDK = {
             $.ajax({
                 url: SDK.serverURL + options.url,
                 method: options.method,
-                contentType: "application/json",
+               /* contentType: "application/json",*/
                 dataType: "json",
                 data: JSON.stringify(options.data),
                 success: function (data, status, xhr) {
@@ -20,7 +20,7 @@ var SDK = {
             });
         },
 
-        Book: {
+       /* Book: {
             getAll: function (cb) {
                 SDK.request({method: "GET", url: "/book", headers: {filter: {include: ["authors", "publisher"]}}}, cb);
             },
@@ -32,7 +32,7 @@ var SDK = {
                     headers: {authorization: SDK.Storage.load("tokenId")}
                 }, cb);
             }
-        },
+        }, */
 
         Review: {
             getAll: function (cb) {
@@ -57,36 +57,24 @@ var SDK = {
 
         Lectures: {
             getAll: function (cb) {
-                SDK.request({
-                    method: "GET",
-                    url: "/lecture",
-                    headers: {filter: {include: ["id", "courseId", "description", "start", "end"]}}
-                }, cb);
+                SDK.request({method: "GET", url: "/course/BALJO1001U_LA_E16", headers: {}}, cb);
             },
             create: function (data, cb) {
-                SDK.request({
-                    method: "POST",
-                    url: "/lecture",
-                    data: data,
-                    headers: {authorization: SDK.Storage.load("tokenId")}
+                SDK.request({method: "POST", url: "/lecture", data: data, headers: {authorization: SDK.Storage.load("tokenId")}
                 }, cb);
             }
         },
+
 
         Course: {
             getAll: function (cb) {
-                SDK.request({
-                    method: "GET",
-                    url: "/course",
-                    headers: {filter: {include: ["id", "code", "name", "studyId"]}}
-                }, cb);
+                SDK.request({method: "GET", url: "/course/6", headers: {}}, cb);
             },
-            getbyId: function (cb) {
-                SDK.request({method: "GET", url: "/courses/" + SDK.Storage.load("tokenId")}, cb);
-                headers: {filter: {include: ["id", "code", "name", "studyId"]}}
-
+            create: function (data, cb) {
+                SDK.request({method: "POST", url: "/course", data: data, headers: {authorization: SDK.Storage.load("tokenId")}}, cb);
             }
         },
+
 
         User: {
             getAll: function (cb) {
@@ -99,19 +87,19 @@ var SDK = {
         }
         ,
 
-        Publisher: {
+       /* Publisher: {
             getAll: function (cb) {
                 SDK.request({method: "GET", url: "/publishers"}, cb);
             }
         }
-        ,
+        ,*/
 
-        Author: {
+       /* Author: {
             getAll: function (cb) {
                 SDK.request({method: "GET", url: "/authors"}, cb);
             }
         }
-        ,
+        ,*/
 
         logOut: function () {
             SDK.Storage.remove("tokenId");
@@ -139,7 +127,7 @@ var SDK = {
 
                 SDK.Storage.persist("tokenId", data.id);
                 SDK.Storage.persist("type", data.type);
-                //SDK.Storage.persist("user", data.user);
+                SDK.Storage.persist("user", data.user);
 
                 cb(null, data);
 
@@ -148,7 +136,7 @@ var SDK = {
         },
 
         Storage: {
-            prefix: "BookStoreSDK",
+            prefix: "CourseStoreSDK",
             persist: function (key, value) {
                 window.localStorage.setItem(this.prefix + key, (typeof value === 'object') ? JSON.stringify(value) : value)
             }
@@ -172,11 +160,11 @@ var SDK = {
 
     }
     ;
-function encryptDecrypt(input) {
+/*function encryptDecrypt(input) {
     var key = ['A', 'B', 'C'];
     var out = "";
     for (var i = 0; i < input.length; i++) {
         out += (String.fromCharCode(((input.charAt(i)).charCodeAt(0) ^ (key[i % key.length]).charCodeAt(0))));
     }
     return out;
-}
+}*/
