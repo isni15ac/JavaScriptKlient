@@ -5,10 +5,10 @@
 $(document).ready(function () {
 
     //Fires on page-load
-    SDK.Review.getAll(function(err, review){
+    SDK.Review.getAll(function(err, reviews){
         if(err) throw err;
 
-        var decrypted = encryptDecrypt(data);
+        var decrypted = encryptDecrypt(reviews);
         decrypted = JSON.parse(decrypted);
 
 
