@@ -8,7 +8,7 @@ var SDK = {
             $.ajax({
                 url: SDK.serverURL + options.url,
                 method: options.method,
-               /* contentType: "application/json",*/
+                contentType: "application/json",
                 dataType: "json",
                 data: JSON.stringify(options.data),
                 success: function (data, status, xhr) {
@@ -57,7 +57,8 @@ var SDK = {
 
         Lectures: {
             getAll: function (cb) {
-                SDK.request({method: "GET", url: "/course/BALJO1001U_LA_E16", headers: {}}, cb);
+                SDK.request({method: "GET", url: "/lecture/BALJO1001U_LA_E16", headers: {filter: {include: ["description", "startDate", "endDate"]}}
+                }, cb);
             },
             create: function (data, cb) {
                 SDK.request({method: "POST", url: "/lecture", data: data, headers: {authorization: SDK.Storage.load("tokenId")}
@@ -68,7 +69,8 @@ var SDK = {
 
         Course: {
             getAll: function (cb) {
-                SDK.request({method: "GET", url: "/course/6", headers: {}}, cb);
+                SDK.request({method: "GET", url: "/course/6", headers: {filter: {include: ["code", "displaytext"]}}
+            }, cb);
             },
             create: function (data, cb) {
                 SDK.request({method: "POST", url: "/course", data: data, headers: {authorization: SDK.Storage.load("tokenId")}}, cb);
