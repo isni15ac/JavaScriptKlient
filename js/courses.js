@@ -15,22 +15,15 @@ $(document).ready(function () {
                 "<tr>" +
                 "<td>" + course.code + "</td>" +
                 "<td>" + course.displaytext + "</td>" +
-                 "<td>" + "<button id='alert'>(Click)</button>" + "</td>" +
+                "<td>" + "<button id='alert'>(Click)</button>" + "</td>" +
                 "</tr>");
 
-    });
+        });
 
         $("#coursesTableBody").on("click", "#alert", function() {
+            window.location.href = "lectures.html#";
             alert(JSON.stringify($(this)));
         });
 
-        });
     });
-
-
-
-
-
-/*var decrypted = encryptDecrypt(courses);
- decrypted = JSON.parse(decrypted);*/
-
+});

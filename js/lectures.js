@@ -23,9 +23,8 @@ $(document).ready(function () {
         $("#coursesTableBody").on("click", "#alert", function() {
             alert(JSON.stringify($(this)));
 
-});
+        });
     });
 
 });
 
-/* window.location.href = "review.html";*/
