@@ -21,31 +21,37 @@ var SDK = {
     },
 
     Course: {
-        getAll: function (cb) {
-            SDK.request({method: "GET", url: "/course/6", headers: {filter: {include: ["code", "displaytext"]}}
-            }, cb);
+        getAll: function (userId, cb) {
+            SDK.request({method: "GET", url: "/course/" + userId, headers: {filter: {include: ["code", "displaytext"]}}}, cb);
         },
         create: function (data, cb) {
-            SDK.request({method: "POST", url: "/course", data: data, headers: {authorization: SDK.Storage.load("tokenId")}}, cb);
+            SDK.request({method: "POST", url: "/course/", data: data, headers: {authorization: SDK.Storage.load("userId")}}, cb);
         }
     },
-
 
     Lectures: {
-        getAll: function (cb) {
-            SDK.request({method: "GET", url: "/lecture/BALJO1001U_LA_E16", headers: {filter: {include: ["description", "startDate", "endDate"]}}
-            }, cb);
+        getAll: function (lectureCode, cb){
+            SDK.request({method: "GET", url: "/lecture/" + lectureCode, headers: {filter: {include: ["description", "start", "end", "courseId"]}}}, cb);
         },
-        create: function (data, cb) {
-            SDK.request({method: "POST", url: "/lecture", data: data, headers: {authorization: SDK.Storage.load("tokenId")}
-            }, cb);
+        create: function (data, cb){
+            SDK.request({method: "POST", url: "/lecture/", data: data, headers: {authorization: SDK.Storage.load("courseId")}}, cb);
         }
     },
 
+    user: {
+        getAll: function (cb) {
+            SDK.request ({method: "GET", url: "/login"}, cb);
+        },
+        current: function () {
+            return SDK.Storage.load("user");
+        }
+    },
+
+
     logOut: function () {
-        SDK.Storage.remove("cbsMail");
-        SDK.Storage.remove("password");
         SDK.Storage.remove("type");
+        SDK.Storage.remove("userId");
+        SDK.Storage.remove("user");
     },
 
     login: function (cbsMail, password, cb) {
@@ -65,16 +71,16 @@ var SDK = {
 
             alert(JSON.stringify(data));
 
-            SDK.Storage.persist("cbsMail", data.id);
             SDK.Storage.persist("type", data.type);
-            SDK.Storage.persist("userId", data.userId);
+            SDK.Storage.persist("userId", data.id);
+            SDK.Storage.persist("user", data);
 
             cb(null, data);
 
         });
 
     },
-
+//Use localStorage to store data - you set and get items
     Storage: {
         prefix: "CourseStoreSDK",
         persist: function (key, value) {
@@ -95,14 +101,3 @@ var SDK = {
         }
     }
 };
-
-
-
-/*function encryptDecrypt(input) {
- var key = ['A', 'B', 'C'];
- var out = "";
- for (var i = 0; i < input.length; i++) {
- out += (String.fromCharCode(((input.charAt(i)).charCodeAt(0) ^ (key[i % key.length]).charCodeAt(0))));
- }
- return out;
- }*/

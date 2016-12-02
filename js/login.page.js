@@ -18,11 +18,19 @@ $(document).ready(function () {
       //Login OK!
       $("#loginForm").find(".form-group").addClass("has-success");
 
-      window.location.href = "courses.html";
-
+      if (data.type =="admin") {
+          window.location.href="admin.html";
+      }
+      else if (data.type =="student"){
+          window.location.href="courses.html";
+      }
+      else if(data.type == "teacher") {
+          window.location.href = "teacher.html";
+      }
+      else{
+          window.alert("Der er en fejl")
+      }
     });
 
-
             })
-
 });

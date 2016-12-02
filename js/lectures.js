@@ -1,30 +1,33 @@
 /**
  * Created by Isabella on 25-11-2016.
  */
-
 $(document).ready(function () {
+    var lectureCode = SDK.Storage.load("code");
+    var lecturesTableBody = $("#studentLectureTableBody")
 
     //Fires on page-load
-    SDK.Lectures.getAll(function(err, data){
+    SDK.Lectures.getAll(lectureCode, function(err, lectures){
         if(err) throw err;
 
+
+//Table for the courses
         var $lecturesTableBody = $("#lecturesTableBody");
-        data.forEach(function (lecture) {
+        lectures.forEach(function (lecture) {
 
             $lecturesTableBody.append(
                 "<tr>" +
                 "<td>" + lecture.description + "</td>" +
-                "<td>" + lecture.startDate + "</td>" +
-                "<td>" + lecture.endDate + "</td>" +
-                "<td>" + "<button id='alert'>(Click)</button>" + "</td>" +
+                "<td>" + lecture.start + "</td>" +
+                "<td>" + lecture.end + "</td>" +
+                "<td>" + lecture.courseId + "</td>" +
+                "<td class='btn-row'> <button class='btn btn-default toReview' data-id=" + lecture.id+ ">Tilføj kommentar</button></td>" +
                 "</tr>");
-
         });
-        $("#coursesTableBody").on("click", "#alert", function() {
-            alert(JSON.stringify($(this)));
 
+        $("#studentLectureTableBody").on('click','.toStudent',function(e){
+            var id = $(this).data("id");
+            window.location.href = "student.html#" + id;
         });
+
     });
-
 });
-
