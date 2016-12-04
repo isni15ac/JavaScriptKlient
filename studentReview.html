@@ -13,58 +13,6 @@
 </head>
 <body>
 
-<!-- New User Modal -->
-<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-          aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Kommentar</h4>
-      </div>
-      <div class="modal-body">
-        <input type="text" name="fname"><br>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Annuller</button>
-        <button type="button" class="btn btn-primary">Ok</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- New Rating Modal -->
-<div class="modal fade" id="newRatingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Bedømmelse</h4>
-      </div>
-
-      <span class="Rating">
-  <input id="rating1" type="radio" name="rating" value="5">
-  <label for="rating1">1</label>
-  <input id="rating2" type="radio" name="rating" value="4">
-  <label for="rating2">2</label>
-  <input id="rating3" type="radio" name="rating" value="3">
-  <label for="rating3">3</label>
-  <input id="rating4" type="radio" name="rating" value="2">
-  <label for="rating4">4</label>
-  <input id="rating5" type="radio" name="rating" value="1">
-  <label for="rating5">5</label>
-</span>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Annuller</button>
-        <button type="button" class="btn btn-primary">Ok</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="container">
 
   <div class="row">
@@ -80,13 +28,10 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="review.html">Se alle</a>
-
           </div>
 
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav navbar-right">
-              <li role="presentation"><a href="studentLectures.html">Tilbage til lektioner</a></li>
               <li><a href="index.html">Logud</a></li>
             </ul>
           </div>
@@ -95,35 +40,38 @@
 
 
       <div class="page-header">
-        <h1>Evaluering!</h1>
+        <h1>Evaluering</h1>
       </div>
+      <table class="table">
+        <thead>
+        <th>Kommentarer</th>
+        <th>Rating</th>
+        <th>Slet kommentar</th>
+        </thead>
+        <tbody id="studentReviewTableBody">
+        <tr></tr>
+        </tbody>
+      </table>
 
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title">Bedømmelse</h3>
+      <form>
+        <div class="form-group">
+          <label for="email">Comment</label>
+          <input class="form-control" name="comment" id="comment">
         </div>
-
-        <div class="panel-body">
-          <hr>
-          <button class="btn btn-success" data-toggle="modal" data-target="#newRatingModal">
-            <span class="glyphicon glyphicon-plus"></span> Opret ny bedømmelse
-          </button>
-
+        <div class="form-group">
+          <label for="sel1">Rating</label>
+          <select class="form-control" name="rating" id="rating">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
         </div>
-      </div>
+        <button id="insertReviewBtn" type="submit" class="btn btn-default">Ok</button>
+      </form>
 
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title">Kommentarer</h3>
-        </div>
-        <div class="panel-body">
-          <hr>
-          <button class="btn btn-success" data-toggle="modal" data-target="#newUserModal">
-            <span class="glyphicon glyphicon-plus"></span> Opret ny kommentar
-          </button>
-
-        </div>
-      </div>
+    </div>
 
     </div>
   </div>
@@ -132,7 +80,9 @@
 
 <footer class="footer">
   <div class="container">
-    <p class="text-muted">2016 © All rights reserved - Undervisningsevaluering</p>
+    <p class="footer-title">Copenhagen Business School</p>
+    Solbjerg Plads 3,
+    2000 Frederiksberg
   </div>
 </footer>
 

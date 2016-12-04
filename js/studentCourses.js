@@ -16,16 +16,19 @@ $(document).ready(function () {
                 "<tr>" +
                 "<td>" + course.code + "</td>" +
                 "<td>" + course.displaytext + "</td>" +
-                "<td class='btn-row'> <button class='btn btn-default' data-course=" + course.displaytext + ">" + "<li>" + course.code + "</li>" + "</button>" + "</td>" +
+                "<td class='btn-row'> <button class='btn btn-default toLecture' data-course=" + course.displaytext + ">" + "<li>" + course.code + "</li>" + "</button>" + "</td>" +
                 "</tr>");
             console.log(course);
         });
 
-            $('#coursesTableBody').on('click','button',function(){
-                var code = $(this).data("lecture");
-                $("#input").val("code");
-               window.location.href = "studentLectures.html#" + code;
+            $('#coursesTableBody').on('click','.toLecture',function(){
+                var course = $(this).data('course');
+                $("#input").val("course");
+               window.location.href = "studentLectures.html#" + course;
+                console.log(course);
             });
+
+
     });
     });
 

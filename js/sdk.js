@@ -41,21 +41,18 @@ var SDK = {
         getAll:function (id, cb) {
             SDK.request({method: "GET", url: "/review/" + id, headers:{filter: {include: ["comment", "rating"]}}}, cb);
         },
-        create: function (data, cb){
-            SDK.request({method: "POST", url: "/review/", data: data, headers: {authorization: SDK.Storage.load("id")}}, cb);
+        create: function (id, cb){
+            SDK.request({method: "DELETE", url: "/student/review/", id: id, headers: {authorization: SDK.Storage.load("userId")}}, cb);
+        },
+        create: function(id, cb) {
+            SDK.request({method: "POST",
+                url: "/student/review/",
+                rating: rating,
+                comment: comment,
+                lectureId: lecture,
+                headers: {authorization: SDK.Storage.load("userId")}}, cb);
         }
     },
-
-   /* Admin: {
-        getAll: function (userId, cb) {
-            SDK.request({method: "GET", url: "/course/" + userId, headers:{filter: {include: ["courses", "lectures"]}}}, cb);
-        },
-        create: function (data, cb){
-            SDK.request({method: "POST", url: "/course/", data: data, headers: {authorization: SDK.Storage.load("userId")}}, cb);
-        }
-    },*/
-
-
 
     user: {
         getAll: function (cb) {
@@ -99,6 +96,7 @@ var SDK = {
         });
 
     },
+
 //Use localStorage to store data - you set and get items
     Storage: {
         prefix: "CourseStoreSDK",
