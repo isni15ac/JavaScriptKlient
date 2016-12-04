@@ -22,7 +22,7 @@ $(document).ready(function () {
           window.location.href="admin.html";
       }
       else if (data.type =="student"){
-          window.location.href="courses.html";
+          window.location.href="studentCourses.html";
       }
       else if(data.type == "teacher") {
           window.location.href = "teacher.html";

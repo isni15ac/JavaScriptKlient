@@ -30,13 +30,32 @@ var SDK = {
     },
 
     Lectures: {
-        getAll: function (lectureCode, cb){
-            SDK.request({method: "GET", url: "/lecture/" + lectureCode, headers: {filter: {include: ["description", "start", "end", "courseId"]}}}, cb);
-        },
-        create: function (data, cb){
-            SDK.request({method: "POST", url: "/lecture/", data: data, headers: {authorization: SDK.Storage.load("courseId")}}, cb);
+        getAll: function (code, cb){
+            SDK.request({method: "GET",
+                url: "/lecture/" + code,
+                headers: {filter: {include: ["data-course"]}}}, cb);
         }
     },
+
+    Review: {
+        getAll:function (id, cb) {
+            SDK.request({method: "GET", url: "/review/" + id, headers:{filter: {include: ["comment", "rating"]}}}, cb);
+        },
+        create: function (data, cb){
+            SDK.request({method: "POST", url: "/review/", data: data, headers: {authorization: SDK.Storage.load("id")}}, cb);
+        }
+    },
+
+   /* Admin: {
+        getAll: function (userId, cb) {
+            SDK.request({method: "GET", url: "/course/" + userId, headers:{filter: {include: ["courses", "lectures"]}}}, cb);
+        },
+        create: function (data, cb){
+            SDK.request({method: "POST", url: "/course/", data: data, headers: {authorization: SDK.Storage.load("userId")}}, cb);
+        }
+    },*/
+
+
 
     user: {
         getAll: function (cb) {

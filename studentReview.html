@@ -8,7 +8,7 @@
 
 
   <meta charset="UTF-8">
-  <title>Student panel</title>
+  <title>StudentReview</title>
 
 </head>
 <body>
@@ -23,7 +23,7 @@
         <h4 class="modal-title">Kommentar</h4>
       </div>
       <div class="modal-body">
-        <input type="text" name="fname"<br>
+        <input type="text" name="fname"><br>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Annuller</button>
@@ -44,7 +44,7 @@
         <h4 class="modal-title">Bedømmelse</h4>
       </div>
 
-      <span class="starRating">
+      <span class="Rating">
   <input id="rating1" type="radio" name="rating" value="5">
   <label for="rating1">1</label>
   <input id="rating2" type="radio" name="rating" value="4">
@@ -80,12 +80,13 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="comments.html">Kommentarer og  bedømmelser</a>
+            <a class="navbar-brand" href="review.html">Se alle</a>
 
           </div>
 
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav navbar-right">
+              <li role="presentation"><a href="studentLectures.html">Tilbage til lektioner</a></li>
               <li><a href="index.html">Logud</a></li>
             </ul>
           </div>
@@ -94,7 +95,7 @@
 
 
       <div class="page-header">
-        <h1>Kommentér og bedømme dine fag!</h1>
+        <h1>Evaluering!</h1>
       </div>
 
       <div class="panel panel-primary">
@@ -139,7 +140,7 @@
 <script src="lib/js/jquery-3.1.1.js"></script>
 <script src="lib/js/bootstrap.js"></script>
 <script src="js/sdk.js"></script>
-<script src="js/review.js"></script>
+<script src="js/studentReview.js"></script>
 <script src="login.html"></script>
 
 </body>
