@@ -1,5 +1,8 @@
-$(document).ready(function () {
+/**
+ * Created by Isabella on 03-12-2016.
+ */
 
+$(document).ready(function () {
     var user = SDK.Storage.load("user");
     var userId = user["id"];
 
@@ -9,10 +12,10 @@ $(document).ready(function () {
 
 
 //Table for the courses
-        var $coursesTableBody = $("#coursesTableBody");
+        var $adminCoursesTableBody = $("#adminCoursesTableBody");
         courses.forEach(function (course) {
 
-            $coursesTableBody.append(
+            $adminCoursesTableBody.append(
                 "<tr>" +
                 "<td>" + course.code + "</td>" +
                 "<td>" + course.displaytext + "</td>" +
@@ -21,15 +24,13 @@ $(document).ready(function () {
             console.log(course);
         });
 
-            $('#coursesTableBody').on('click','.toLecture',function(){
-                var course = $(this).data('course');
-                $("#input").val("course");
-               window.location.href = "studentLectures.html#" + course;
-                console.log(course);
-            });
+        $('#adminCoursesTableBody').on('click','.toLecture',function(){
+            var course = $(this).data('course');
+            $("#input").val("course");
+            window.location.href = "adminLectures.html#" + course;
+            console.log(course);
+        });
 
 
     });
-    });
-
-
+});

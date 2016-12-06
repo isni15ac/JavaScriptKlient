@@ -1,12 +1,11 @@
 /**
- * Created by Isabella on 25-11-2016.
- * Henter lektioner i via knap og så i en tabel
+ * Created by Isabella on 06-12-2016.
  */
 
 $(document).ready(function () {
 
     var course = window.location.hash.substr(1); //kode fra stackoverflow
-    var studentLecturesTableBody = $("#studentLecturesTableBody");
+    var adminCoursesTableBody = $("#adminCoursesTableBody");
     console.log(course);
 
     //Fires on page-load for lectures
@@ -14,10 +13,10 @@ $(document).ready(function () {
         if(err) throw err;
         console.log(data);
 
-        var $studentLecturesTableBody = $("#studentLecturesTableBody");
+        var $adminCoursesTableBody = $("#adminCoursesTableBody");
         data.forEach(function (lecture) {
 
-            $studentLecturesTableBody.append(
+            $adminCoursesTableBody.append(
                 "<tr>" +
                 "<td>" + lecture.type + "</td>" +
                 "<td>" + lecture.description + "</td>" +
@@ -27,13 +26,4 @@ $(document).ready(function () {
                 "</tr>");
         })
     });
-    });
-//button som har lectureId værdi ift. reviews
-$("#studentLecturesTableBody").on('click','.toReview',function(e){
-    var userId = $(this).data("userId");
-    $("#input").val("userId");
-    window.location.href = "studentReview.html#" + userId;
-    console.log(userId);
-
 });
-

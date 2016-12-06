@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="lib/css/bootstrap.css">
+    <link rel="stylesheet" href="lib/css/bootstrap.lumen.min.css">
+    <link rel="stylesheet" href="css/sticky-footer.css">
+
+
+    <meta charset="UTF-8">
+    <title>AdminLectures</title>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-2">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li role="presentation"><a href="studentCourses.html">Tilbage til kurser</a></li>
+                            <li><a href="login.html">Logud</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="page-header">
+                <h1 style="color:blue;margin-left:0px;">Se alle lektioner</h1>
+            </div>
+
+            <table class="table">
+                <thead>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Start</th>
+                <th>end</th>
+                </thead>
+                <tbody id="adminLecturesTableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="footer-title">Copenhagen Business School</p>
+        Solbjerg Plads 3,
+        2000 Frederiksberg
+    </div>
+</footer>
+
+
+<script src="lib/js/jquery-3.1.1.js"></script>
+<script src="lib/js/bootstrap.js"></script>
+<script src="js/sdk.js"></script>
+<script src="js/adminLectures.js"></script>
+
+</body>
+</html>

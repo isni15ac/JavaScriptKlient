@@ -37,22 +37,33 @@ var SDK = {
         }
     },
 
-    Review: {
-        getAll:function (id, cb) {
-            SDK.request({method: "GET", url: "/review/" + id, headers:{filter: {include: ["comment", "rating"]}}}, cb);
-        },
-        create: function (id, cb){
-            SDK.request({method: "DELETE", url: "/student/review/", id: id, headers: {authorization: SDK.Storage.load("userId")}}, cb);
-        },
-        create: function(id, cb) {
-            SDK.request({method: "POST",
-                url: "/student/review/",
+    UserReview: {
+        getAll: function (userId, cb) {
+            SDK.request({method: "GET", url: "/review/userId/" + SDK.Storage.load("userId"), headers: {filter: {include: ["id", "userId", "lectureId", "rating", "comment", "isDeleted"]}}}, cb);
+    },
+        create: function (rating, comment, lecture, cb) {
+            SDK.request({method: "POST", url: "/student/review/",
                 rating: rating,
                 comment: comment,
                 lectureId: lecture,
                 headers: {authorization: SDK.Storage.load("userId")}}, cb);
+        },
+        create: function (id, cb) {
+            SDK.request({method: "DELETE", url: "/student/review/",
+                id: id,
+                headers: {authorization: SDK.Storage.load("userId")}}, cb);
+        }
+},
+
+    LectureReview: {
+        getAll: function (lectureId, cb) {
+            SDK.request({method: "GET", url: "/review/lecture/" + SDK.Storage.load("lectureId"), headers: {filter: {include: ["id", "userId", "lectureId", "rating", "comment", "isDeleted"]}}}, cb);
+        },
+        create: function (data, cb) {
+            SDK.request({method: "POST", url: "/review", data: data, headers: {authorization: SDK.Storage.load("tokenId")}}, cb);
         }
     },
+
 
     user: {
         getAll: function (cb) {
@@ -69,6 +80,12 @@ var SDK = {
         SDK.Storage.remove("userId");
         SDK.Storage.remove("user");
     },
+
+    /*let SALT = "n0zaCTADRUuTb@JUp01n%5@(l@IAaLlZ";
+    let passWithSalt = password + SALT;
+    let hashedPassWithSalt = md5(passWithSalt);
+    let passWithSalt2 = hashedPassWithSalt + SALT;
+    let hashedPassWithSalt2 = md5(passWithSalt2);*/
 
     login: function (cbsMail, password, cb) {
         console.log(cbsMail);
