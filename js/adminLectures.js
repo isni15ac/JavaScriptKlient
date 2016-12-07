@@ -22,8 +22,16 @@ $(document).ready(function () {
                 "<td>" + lecture.description + "</td>" +
                 "<td>" + lecture.startDate + "</td>" +
                 "<td>" + lecture.endDate + "</td>" +
-                "<td class='btn-row'> <button class='btn btn-default toReview' data-id=" + lecture.id+ ">Klik for at tilføje kommentar</button></td>" +
+                "<td class='btn-row'> <button class='btn btn-default toReview' data-id=" + lecture.id+ ">Se kommentarer</button></td>" +
                 "</tr>");
         })
     });
+});
+
+//button som har lectureId værdi ift. reviews
+$("#adminLecturesTableBody").on('click','.toReview',function(e){
+    var userId = $(this).data("userId");
+    $("#input").val("userId");
+    window.location.href = "adminReview.html#" + userId;
+    console.log(userId);
 });

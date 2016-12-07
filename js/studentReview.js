@@ -4,23 +4,24 @@
  */
 
 $(document).ready(function () {
-    var userId = window.location.hash.substr(1); //kode fra stackoverflow
+    var userId = window.location.hash.substr(1);
 
     //reviews fra en bestemt bruger
-       SDK.UserReview.getAll(userId, function(err, reviews){
-            if(err) throw err;
+    SDK.UserReview.getAll(function(err, reviews){
+     if(err) throw err;
 
-           var btn;
-           if(userId.id == SDK.Storage.load("userId")) {
-               btn = "<button class='btn btn-default toDelete' data-id=" + userId.id+ ">Slet</button>"
-           } else {
-               btn = "<button class='btn btn-danger' data-id=" + userId.id+ ">Kan ikke slette</button>"
-           }
 
-            var studentReviewTableBody = $("#studentReviewTableBody");
-            reviews.forEach(function (review) {
+         var $studentReviewTableBody = $("#studentReviewTableBody");
+         reviews.forEach(function (review) {
 
-                studentReviewTableBody.append(
+             var btn;
+             if(review.userId == SDK.Storage.load("userId")) {
+                 btn = "<button class='btn btn-default toDelete' data-id=" + userId.id+ ">Slet</button>"
+             } else {
+                 btn = "<button class='btn btn-danger' data-id=" + userId.id+ ">Kan ikke slette</button>"
+             }
+
+                $studentReviewTableBody.append(
                     "<tr>" +
                     "<td>" + review.lectureId + "</td>" +
                     "<td>" + review.comment + "</td>" +
@@ -29,19 +30,37 @@ $(document).ready(function () {
                     "</tr>");
             });
 
-           $("#reviewTableBody").on('click','.toDelete',function(e){
-               var id = $(this).data("id");
+         // Delete knap til alle kommentarer oprettet af userId
+           $("#studentReviewTableBody").on('click','.toDelete',function(e){
+               e.preventDefault();
+               var userId = $("#userId").val(); //skal have fat i userId
+               var reviewId = $("#reviewId").val();
+               // $(this).remove("review");
+               window.alert("Vil du slette denne kommentar");
            });
 
-               $("#insertReviewBtn").click(function(e) {
-                   e.preventDefault()
-                   var rating = $("#rating").val()
-                   var comment = $("#comment").val()
-                   var userId = window.location.hash.substr(1); //kode fra stackoverflow
 
+        //Opretter et review med comment og rating i tekstboks, samt refresh funktion så review kommer i tabel
+               $("#insertReviewBtn").on('click',function(e) {
+                   e.preventDefault();
+
+                   //create Json Object
+                   var userReview = {
+                       rating: $("#reviewRating").val(),
+                       comment: $("#reviewComment").val(),
+                       userId: $("input[name=userRadios]:checked").val()
+                   };
+
+                   //Fetch selected userId
+                   $('#studentReviewTableBody').find('input:checked').each(function() {
+                       userReview.userId.push($(this).val());
+                       window.location.href = "studentReview.html#";
+                   });
                });
-           });
+        });
     });
+
+
 
 
 
