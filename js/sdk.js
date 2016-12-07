@@ -39,21 +39,21 @@ var SDK = {
 
     UserReview: {
         getAll: function (userId, cb) {
-            SDK.request({method: "GET", url: "/review/userId/" + SDK.Storage.load("userId"), headers: {filter: {include: ["id", "userId", "lectureId", "rating", "comment", "isDeleted"]}}}, cb);
-    },
+            SDK.request({method: "GET", url: "/review/user/" + SDK.Storage.load("userId"), headers: {filter: {include: ["id", "userId", "lectureId", "rating", "comment", "isDeleted"]}}}, cb);
+        },
+        create: function (id, cb) {
+            SDK.request({method: "DELETE", url: "/student/review/",
+                id: id,
+                headers: {authorization: SDK.Storage.load("userId")}}, cb);
+        },
         create: function (rating, comment, lecture, cb) {
             SDK.request({method: "POST", url: "/student/review/",
                 rating: rating,
                 comment: comment,
                 lectureId: lecture,
                 headers: {authorization: SDK.Storage.load("userId")}}, cb);
-        },
-        create: function (id, cb) {
-            SDK.request({method: "DELETE", url: "/student/review/",
-                id: id,
-                headers: {authorization: SDK.Storage.load("userId")}}, cb);
         }
-},
+    },
 
     LectureReview: {
         getAll: function (lectureId, cb) {

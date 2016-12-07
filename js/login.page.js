@@ -19,13 +19,13 @@ $(document).ready(function () {
       $("#loginForm").find(".form-group").addClass("has-success");
 
       if (data.type =="admin") {
-          window.location.href="admin.html";
+          window.location.href="adminCourses.html";
       }
       else if (data.type =="student"){
           window.location.href="studentCourses.html";
       }
       else if(data.type == "teacher") {
-          window.location.href = "teacher.html";
+          window.location.href = "teacherCourses.html";
       }
       else{
           window.alert("Der er en fejl")

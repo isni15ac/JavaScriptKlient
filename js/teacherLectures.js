@@ -5,7 +5,7 @@
 $(document).ready(function () {
 
     var course = window.location.hash.substr(1); //kode fra stackoverflow
-    var adminLecturesTableBody = $("#adminLecturesTableBody");
+    var teacherLecturesTableBody = $("#teacherLecturesTableBody");
     console.log(course);
 
     //Fires on page-load for lectures
@@ -13,10 +13,10 @@ $(document).ready(function () {
         if(err) throw err;
         console.log(data);
 
-        var $adminLecturesTableBody = $("#adminLecturesTableBody");
+        var $teacherLecturesTableBody = $("#teacherLecturesTableBody");
         data.forEach(function (lecture) {
 
-            $adminLecturesTableBody.append(
+            $teacherLecturesTableBody.append(
                 "<tr>" +
                 "<td>" + lecture.type + "</td>" +
                 "<td>" + lecture.description + "</td>" +
@@ -27,3 +27,4 @@ $(document).ready(function () {
         })
     });
 });
+
