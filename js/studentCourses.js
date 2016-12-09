@@ -1,17 +1,17 @@
+// Har hentet inspiration til denne klasse fra javascript kurset
+
 $(document).ready(function () {
 
-    var user = SDK.Storage.load("user");
-    var userId = user["id"];
-
     //Fires on page-load for courses
-    SDK.Course.getAll(userId, function(err, courses){
+    SDK.Course.getAll(function(err, courses){
         if(err) throw err;
 
 
-//Table for the courses
+        //Sætter courses på variablen coursesTableBody
         var $coursesTableBody = $("#coursesTableBody");
         courses.forEach(function (course) {
 
+            //Tabel for courses indeholdende værdierne code og dislaytext, samt én button til hver course
             $coursesTableBody.append(
                 "<tr>" +
                 "<td>" + course.code + "</td>" +
@@ -21,6 +21,7 @@ $(document).ready(function () {
             console.log(course);
         });
 
+        //Course button med click function og course værdi, samt loader til lecture siden
             $('#coursesTableBody').on('click','.toLecture',function(){
                 var course = $(this).data('course');
                 $("#input").val("course");
@@ -29,6 +30,10 @@ $(document).ready(function () {
             });
 
 
+    });
+    $("#logOutLink").on("click", function(){
+        SDK.logOut();
+        window.location.href = "login.html";
     });
     });
 

@@ -1,14 +1,17 @@
+<!--Genbrugt sideopstilling-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
+  <!-- Tagene definere link mellem et dokument og en ekstern resource-->
   <link rel="stylesheet" href="lib/css/bootstrap.css">
   <link rel="stylesheet" href="lib/css/bootstrap.lumen.min.css">
   <link rel="stylesheet" href="css/sticky-footer.css">
 
 
   <meta charset="UTF-8">
-  <title>StudentReview</title>
+  <title>studentReview</title>
 
 </head>
 <body>
@@ -18,30 +21,25 @@
   <div class="row">
     <div class="col-lg-12">
 
-      <nav class="navbar navbar-inverse">
+      <!--Navbar fra bootstrap-->
+      <nav class="navbar navbar-default">
         <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-2">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
 
+          <!--Header som navigere en videre til login.html-->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="index.html">Logud</a></li>
+              <li><a href="login.html">Logud</a></li>
             </ul>
           </div>
         </div>
       </nav>
 
-
+<!--Page-header med overskrift-->
       <div class="page-header">
         <h1>Evaluering</h1>
       </div>
+
+      <!--En tabel indeholdende header information til reviews - metode hentet fra w3schools.com-->
       <table class="table">
         <thead>
         <th>LectureId</th>
@@ -54,6 +52,7 @@
         </tbody>
       </table>
 
+      <!--Labels til at oprette en comment og en rating via ok button - inspiration fra Esben og bootstrap-->
       <form>
         <div class="form-group">
           <label for="email">Comment</label>
@@ -69,7 +68,7 @@
             <option>5</option>
           </select>
         </div>
-        <button id="insertReviewBtn" type="submit" class="btn btn-default">Ok</button>
+        <button id="createReviewBtn" type="submit" class="btn btn-default">Ok</button>
       </form>
 
     </div>
@@ -78,7 +77,7 @@
   </div>
 </div>
 
-
+<!--footer section på siden med information om CBS-->
 <footer class="footer">
   <div class="container">
     <p class="footer-title">Copenhagen Business School</p>
@@ -87,7 +86,7 @@
   </div>
 </footer>
 
-
+<!--Script tag der peger til javascript filer gennem src-->
 <script src="lib/js/jquery-3.1.1.js"></script>
 <script src="lib/js/bootstrap.js"></script>
 <script src="js/sdk.js"></script>
