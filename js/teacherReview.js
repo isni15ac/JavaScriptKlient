@@ -3,25 +3,28 @@
  */
 
 $(document).ready(function () {
-    var userId = window.location.hash.substr(1);
 
-    //reviews fra en bestemt bruger
-    SDK.UserReview.getAll(function(err, reviews){
+    var lectureId = window.location.hash.substr(1); //Tager hash værdi fra url - kode fra stackoverflow
+    console.log(lectureId);
+
+//Fires on page-load for lectures
+    SDK.LectureReview.getAll(function(err, data){
         if(err) throw err;
+        console.log(data);
 
         var $teacherReviewTableBody = $("#teacherReviewTableBody");
-        reviews.forEach(function (review) {
+        data.forEach(function (review) {
 
-
+            // Tabellen som viser frem alle reviews til den lecturen.
             $teacherReviewTableBody.append(
                 "<tr>" +
                 "<td>" + review.lectureId + "</td>" +
+                "<td>" + review.userId + "</td>" +
                 "<td>" + review.comment + "</td>" +
                 "<td>" + review.rating + "</td>" +
-                "<td class='btn-row'>" + btn + "</td>" +
-                "</tr>");
-        });
-
-
+                "</tr>"
+            );
         });
     });
+});
+

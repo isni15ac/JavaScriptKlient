@@ -1,7 +1,10 @@
+<!-- Der er hentet inspiration fra js kurset, samt fra Esben Bak -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
+  <!-- Tagene definere link mellem et dokument og en ekstern resource-->
   <link rel="stylesheet" href="lib/css/bootstrap.css">
   <link rel="stylesheet" href="lib/css/bootstrap.lumen.min.css">
   <link rel="stylesheet" href="css/sticky-footer.css">
@@ -18,18 +21,11 @@
   <div class="row">
     <div class="col-lg-12">
 
-      <nav class="navbar navbar-inverse">
+      <!--Navbar fra bootstrap-->
+      <nav class="navbar navbar-default">
         <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
 
-
+          <!--Header som navigere en videre til login.html-->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav navbar-right">
               <p><a class="btn btn-success btn-lg" href="Login.html">Login</a></p>
@@ -38,18 +34,21 @@
         </div>
       </nav>
 
+      <!--Baggrundsfarven på selve siden-->
       <body style="background-color: #DCDCDC">
+
+      <!--En body med tekst-->
       <div class="jumbotron">
-        <h1>Evaluering CBS</h1>
+        <h1>CBS</h1>
         <h4>HA(IT) 3. Semester 2016</h4>
         <p>Log-in for at se nærmere på dine fag</p>
-
       </div>
 
     </div>
   </div>
 </div>
 
+<!--footer section på siden med information om CBS-->
 <footer class="footer">
   <div class="container">
     <p class="footer-title">Copenhagen Business School</p>
@@ -58,6 +57,7 @@
   </div>
 </footer>
 
+<!--Script tag der peger til javascript filer gennem src-->
 <script src="lib/js/jquery-3.1.1.js"></script>
 <script src="lib/js/bootstrap.js"></script>
 <script src="js/sdk.js"></script>

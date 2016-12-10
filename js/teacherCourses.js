@@ -5,11 +5,8 @@
 
 $(document).ready(function () {
 
-    var user = SDK.Storage.load("user");
-    var userId = user["id"];
-
     //Fires on page-load for courses
-    SDK.Course.getAll(userId, function(err, courses){
+    SDK.Course.getAll(function(err, courses){
         if(err) throw err;
 
 

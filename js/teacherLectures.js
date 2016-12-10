@@ -18,21 +18,24 @@ $(document).ready(function () {
 
             $teacherLecturesTableBody.append(
                 "<tr>" +
+                "<td>" + lecture.id + "</td>" +
                 "<td>" + lecture.type + "</td>" +
                 "<td>" + lecture.description + "</td>" +
                 "<td>" + lecture.startDate + "</td>" +
                 "<td>" + lecture.endDate + "</td>" +
-                "<td class='btn-row'> <button class='btn btn-default toReview' data-id=" + lecture.id+ ">Se kommentarer</button></td>" +
+                "<td>" + "<button id='knap1'>Se review</button>" + "</td>" +
                 "</tr>");
+
+            $('button[id^="knap1"]').click(function(){
+                SDK.Storage.persist("lectureId", lecture.id);
+                window.location.href="teacherReview.html#"; + lecture.id;
+                console.log(lecture.id);
+                knap1.close("knap1");
+            });
         })
+
     });
 });
 
-//button som har lectureId værdi ift. reviews
-$("#teacherLecturesTableBody").on('click','.toReview',function(e){
-    var userId = $(this).data("userId");
-    $("#input").val("userId");
-    window.location.href = "teacherReview.html#" + userId;
-    console.log(userId);
-    });
+
 

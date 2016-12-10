@@ -3,86 +3,75 @@
  */
 
 $(document).ready(function () {
-    var userId = window.location.hash.substr(1); //kode fra stackoverflow
+    var lectureId = window.location.hash.substr(1); //Tager hash værdi fra url - kode fra stackoverflow
+    console.log(lectureId);
 
-    $.ajax({
-        method: "GET",
-        url: SDK.serverURL + "/review/user/" + userId,
-        dataType: "json",
-        success: function(reviews){
+//Fires on page-load for lectures
+    SDK.LectureReview.getAll(function(err, data){
+        if(err) throw err;
+        console.log(data);
 
-            var table = $("#studentReviewTableBody");
-            reviews.forEach(function (review) {
+            var $studentReviewTableBody = $("#studentReviewTableBody");
+            data.forEach(function (review) {
 
-                var btn;
-                if(review.userId == SDK.Storage.load("userId")) {
-                    btn = "<button class='btn btn-default toDelete' data-id=" + userId.id+ ">Slet</button>"
-                } else {
-                    btn = "<button class='btn btn-danger' data-id=" + userId.id+ ">Kan ikke slette</button>"
-                }
-
-                table.append(
+                // Tabellen som viser frem alle reviews til den lecturen.
+                $studentReviewTableBody.append(
                     "<tr>" +
+                    "<td>" + review.lectureId + "</td>" +
+                    "<td>" + review.userId + "</td>" +
                     "<td>" + review.comment + "</td>" +
                     "<td>" + review.rating + "</td>" +
-                    "<td class='btn-row'>" + btn + "</td>" +
+                    "<td>" + "<button class='delete' data-review=" + review.id + "> Slet </button>" + "</td>" +
                     "</tr>"
                 );
+            });
+    });
 
-            })
+    $('#studentReviewTableBody').on("click",".delete",function () {
+        var reviewId = $(this).data("review");
+        var deleteReview = {
+            reviewId: reviewId
+        };
 
-        },
-        error: function(err) {
-            console.log(err);
+        SDK.DeleteReview.deleteReview(reviewId, function (err, reviewId) {
+            location.reload();
+            console.log("delete");
+        });
+    });
+
+    function createReview() {
+        var review = {
+            comment: $("#comment").val(),
+            rating: $("#rating").val(),
+            userId: SDK.Storage.load("userId"),
+            lectureId: SDK.Storage.load("lectureId"),
+
+        };
+
+        SDK.LectureReview.create(review, function (err, data) {
+            console.log(review);
+            location.reload();
+
+            $("#createReviewBtn").modal("hide");
+        });
         }
-    })
 
+    //Logud funktion
+     $(document).ready(function () {
+
+     $("#LogOut").click(function () {
+     window.location.href = "login.html";
+
+     })
+     })
 });
 
-$("#studentReviewTableBody").on('click','.toDelete',function(e){
-    var id = $(this).data("id");
 
-    $.ajax({
-        type: "DELETE",
-        url: SDK.serverURL + "/student/review",
-        contentType: "application/json",
-        data: JSON.stringify({
-            id: id,
-            userId: SDK.Storage.load("userId")
-        }),
-        success: function(res){
-            location.reload()
-        },
-        error: function(err) {
-            console.log(err);
-        }
-    })
-});
 
-$("#createReviewBtn").click(function(e) {
-    e.preventDefault()
-    var rating = $("#rating").val()
-    var comment = $("#comment").val()
-    var lecture = window.location.hash.substr(1); //kode fra stackoverflow
 
-    $.ajax({
-        type: "POST",
-        url: SDK.serverURL + "/review",
-        contentType: "application/json",
-        data: JSON.stringify({
-            rating: rating,
-            comment: comment,
-            lectureId: lecture,
-            userId: SDK.Storage.load("userId")
-        }),
-        success: function(res){
-            location.reload()
-        },
-        error: function(err) {
-            console.log(err);
-        }
-    })
-});
+
+
+
 
 
 

@@ -43,6 +43,7 @@
       <table class="table">
         <thead>
         <th>LectureId</th>
+        <th>UserId</th>
         <th>Comment</th>
         <th>Rating</th>
         <th>Slet kommentar</th>
@@ -89,8 +90,20 @@
 <!--Script tag der peger til javascript filer gennem src-->
 <script src="lib/js/jquery-3.1.1.js"></script>
 <script src="lib/js/bootstrap.js"></script>
-<script src="js/sdk.js"></script>
 <script src="js/studentReview.js"></script>
+<script src="js/sdk.js"></script>
+
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+      getAllReviews();
+      $("#createReviewBtn").on("click", function () {
+          createReview();
+      })
+  })
+
+</script>
 
 </body>
 </html>

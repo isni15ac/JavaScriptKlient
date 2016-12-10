@@ -8,11 +8,11 @@ $(document).ready(function () {
 
 
         //Sætter courses på variablen coursesTableBody
-        var $coursesTableBody = $("#coursesTableBody");
+        var $studentCoursesTableBody = $("#studentCoursesTableBody");
         courses.forEach(function (course) {
 
             //Tabel for courses indeholdende værdierne code og dislaytext, samt én button til hver course
-            $coursesTableBody.append(
+            $studentCoursesTableBody.append(
                 "<tr>" +
                 "<td>" + course.code + "</td>" +
                 "<td>" + course.displaytext + "</td>" +
@@ -22,7 +22,7 @@ $(document).ready(function () {
         });
 
         //Course button med click function og course værdi, samt loader til lecture siden
-            $('#coursesTableBody').on('click','.toLecture',function(){
+            $('#studentCoursesTableBody').on('click','.toLecture',function(){
                 var course = $(this).data('course');
                 $("#input").val("course");
                window.location.href = "studentLectures.html#" + course;

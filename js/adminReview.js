@@ -3,36 +3,26 @@
  */
 
 $(document).ready(function () {
-    var userId = window.location.hash.substr(1);
+    var lectureId = window.location.hash.substr(1); //Tager hash værdi fra url - kode fra stackoverflow
+    console.log(lectureId);
 
-    //reviews fra en bestemt bruger
-    SDK.UserReview.getAll(function(err, reviews){
+//Fires on page-load for lectures
+    SDK.LectureReview.getAll(function(err, data){
         if(err) throw err;
+        console.log(data);
 
         var $adminReviewTableBody = $("#adminReviewTableBody");
-        reviews.forEach(function (review) {
+        data.forEach(function (review) {
 
-            var btn;
-            if(review.userId == SDK.Storage.load("userId")) {
-                btn = "<button class='btn btn-default toDelete' data-id=" + userId.id+ ">Slet</button>"
-            } else {
-                btn = "<button class='btn btn-danger' data-id=" + userId.id+ ">Kan ikke slette</button>"
-            }
-
+            // Tabellen som viser frem alle reviews til den lecturen.
             $adminReviewTableBody.append(
                 "<tr>" +
                 "<td>" + review.lectureId + "</td>" +
+                "<td>" + review.userId + "</td>" +
                 "<td>" + review.comment + "</td>" +
                 "<td>" + review.rating + "</td>" +
-                "<td class='btn-row'>" + btn + "</td>" +
-                "</tr>");
-        });
-
-        // Delete knap til alle kommentarer
-        $("#adminReviewTableBody").on('click','.toDelete',function(e){
-            $(this).remove("review");
-            window.alert("Vil du slette denne kommentar");
-
-        });
+                "</tr>"
+            );
         });
     });
+});

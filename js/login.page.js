@@ -1,36 +1,48 @@
-
+//Der er hentet inspiration til denne klasse fra js kurset
 $(document).ready(function () {
 
-        //Login Button
-        $("#loginButton").on("click", function(e){
-    e.preventDefault();
+    //Login Button
+    $("#loginButton").on("click", function(e){
+        e.preventDefault();
 
+    //Log-in variabler
     var cbsMail = $("#inputEmail").val();
     var password = $("#inputPassword").val();
 
+
+    //Stien til log-in metoden som findes i sdk.js
     SDK.login(cbsMail, password, function(err, data){
 
         //On wrong credentials
-      if(err) {
+        if(err) {
         return $("#loginForm").find(".form-group").addClass("has-error");
-      }
+        }
 
       //Login OK!
       $("#loginForm").find(".form-group").addClass("has-success");
 
-      if (data.type =="admin") {
+
+
+      //Skelne mellem de aktører som logger ind
+        if (data.type =="admin") {
           window.location.href="adminCourses.html";
+          window.alert("admin");
       }
       else if (data.type =="student"){
           window.location.href="studentCourses.html";
-      }
+            window.alert("Student");
+
+        }
       else if(data.type == "teacher") {
           window.location.href = "teacherCourses.html";
-      }
+            window.alert("Teacher");
+
+        }
       else{
           window.alert("Der er en fejl")
       }
+
     });
 
-            })
+            });
 });
