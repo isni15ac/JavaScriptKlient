@@ -5,11 +5,12 @@
 <head>
 
   <!-- Tagene definere link mellem et dokument og en ekstern resource-->
+  <!-- <link> bruges til at linke til en ekstern style sheets-->
   <link rel="stylesheet" href="lib/css/bootstrap.css">
   <link rel="stylesheet" href="lib/css/bootstrap.lumen.min.css">
   <link rel="stylesheet" href="css/sticky-footer.css">
 
-
+  <!--Titlen på siden som fremkommer af browseren-->
   <meta charset="UTF-8">
   <title>studentReview</title>
 
@@ -28,7 +29,7 @@
           <!--Header som navigere en videre til login.html-->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="login.html">Logud</a></li>
+              <li><a id="logOutLink">Log ud</a></li>
             </ul>
           </div>
         </div>
@@ -53,7 +54,8 @@
         </tbody>
       </table>
 
-      <!--Labels til at oprette en comment og en rating via ok button - inspiration fra Esben og bootstrap-->
+      <!--Labels til at oprette en comment og en rating via ok button -->
+      <!--Inspiration fra Esben Bak og w3schools.com med bootstrap-->
       <form>
         <div class="form-group">
           <label for="email">Comment</label>
@@ -93,17 +95,6 @@
 <script src="js/studentReview.js"></script>
 <script src="js/sdk.js"></script>
 
-
-<script type="text/javascript">
-
-  $(document).ready(function(){
-      getAllReviews();
-      $("#createReviewBtn").on("click", function () {
-          createReview();
-      })
-  })
-
-</script>
 
 </body>
 </html>

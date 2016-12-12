@@ -1,4 +1,5 @@
 <!-- Genbrugt skabelon med header og footer fra index.html-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
 
     <!--Titlen på siden som fremkommer af browseren-->
     <meta charset="UTF-8">
-    <title>AdminCourses</title>
+    <title>studentDeltagelse</title>
 
 </head>
 <body>
@@ -25,7 +26,7 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
 
-                    <!--Header som navigere en videre til login.html dvs. logger en ud-->
+                    <!--Header som navigere en videre til login.html dvs. logger brugeren ud-->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                         <ul class="nav navbar-nav navbar-right">
                             <li><a id="logOutLink">Log ud</a></li>
@@ -34,22 +35,25 @@
                 </div>
             </nav>
 
+
             <!-- Overskrift på page-header-->
             <div class="page-header">
-                <h1>Oversigt</h1>
+                <h1 style="color:blue;margin-left:0px;">Se deltagelse</h1>
             </div>
 
-            <!-- En tabel med header information til kurser - metode hentet fra w3schools.com-->
+            <!-- En tabel med header information om deltagelse af en lektion - metode hentet fra w3schools.com-->
             <table class="table">
                 <thead>
-                <th>Code</th>
-                <th>Displaytext</th>
+                <th>UserId</th>
+                <th>CBSMail</th>
+                <th>Type</th>
+
                 </thead>
-                <tbody id="adminCoursesTableBody">
-                <tr></tr>
+                <tbody id="studentDeltagelseTableBody">
                 </tbody>
             </table>
 
+            </table>
         </div>
     </div>
 </div>
@@ -67,7 +71,7 @@
 <script src="lib/js/jquery-3.1.1.js"></script>
 <script src="lib/js/bootstrap.js"></script>
 <script src="js/sdk.js"></script>
-<script src="js/adminCourses.js"></script>
+<script src="js/studentDeltagelse.js"></script>
 
 </body>
 </html>
