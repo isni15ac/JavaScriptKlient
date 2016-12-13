@@ -9,8 +9,7 @@ $(document).ready(function () {
     SDK.Course.getAll(function(err, courses){
         if(err) throw err;
 
-
-//Table for the courses
+        //Table for courses med værdierne code og displaytext
         var $teacherCoursesTableBody = $("#teacherCoursesTableBody");
         courses.forEach(function (course) {
 
@@ -23,14 +22,19 @@ $(document).ready(function () {
             console.log(course);
         });
 
-//knap der indeholder værdi til kurserne (lecture)
+        //knap der kører til lectures med course værdi
         $('#teacherCoursesTableBody').on('click','.toLecture',function(){
             var course = $(this).data('course');
             $("#input").val("course");
             window.location.href = "teacherLectures.html#" + course;
             console.log(course);
         });
-
-
     });
+
+    //Logud funktion
+    //Hentet fra Elena
+    $("#LogOut").click(function () {
+        SDK.logOut();
+        window.location.href = "login.html";
+        })
 });

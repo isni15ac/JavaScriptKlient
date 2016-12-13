@@ -4,7 +4,7 @@
 $(document).ready(function () {
 
     //Opretter to variabler
-    var course = window.location.hash.substr(1); //Tager hash værdi fra url - kode fra stackoverflow
+    var course = window.location.hash.substr(1); //Tager hash værdi fra url - hentet fra stackoverflow
     var studentLecturesTableBody = $("#studentLecturesTableBody");
     console.log(course);
 
@@ -13,7 +13,7 @@ $(document).ready(function () {
         if(err) throw err;
         console.log(data);
 
-        //Sætter lectures på variablen lecturesTableBody
+        //Sætter lecture på variablen studentLecturesTableBody
         var $studentLecturesTableBody = $("#studentLecturesTableBody");
         data.forEach(function (lecture) {
 
@@ -28,23 +28,20 @@ $(document).ready(function () {
                 "<td>" + "<button id='knap1'>Se review</button>" + "</td>" +
                 "</tr>");
 
-            //Lecture button med click function og lecture værdi, samt loader til review siden
-           /*$("#studentLecturesTableBody").on('click','.toReview',function(){
-                SDK.Storage.persist("lectureId", lecture.id);
-                window.location.href = "studentReview.html#" + lecture.id;
-                console.log(lecture.id);
-                toReview.close('.toReview');
 
-        })*/
+           //Lecture button der tager lecture.id som værdi, samt loader til review siden
+            //Hentet fra Mads Bierrings
             $('button[id^="knap1"]').click(function(){
                 SDK.Storage.persist("lectureId", lecture.id);
-                window.location.href="studentReview.html#"; + lecture.id;
+                window.location.href="studentReview.html#";
                 console.log(lecture.id);
                 knap1.close("knap1");
             });
     });
     });
-//Logout funktion - fører en til login siden
+
+    //Logout funktion - fører en til login siden
+    //Hentet fra Elena
     $("#logOutLink").on("click", function(){
         SDK.logOut();
         window.location.href = "login.html";

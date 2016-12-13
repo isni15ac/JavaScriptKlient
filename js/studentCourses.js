@@ -6,6 +6,10 @@ $(document).ready(function () {
     SDK.Course.getAll(function(err, courses){
         if(err) throw err;
 
+        //Prøver at oprette decrypt af data
+        /*var decrypted = encryptDecrypt(data);
+         decrypted = JSON.parse(decrypted);*/
+
 
         //Sætter courses på variablen coursesTableBody
         var $studentCoursesTableBody = $("#studentCoursesTableBody");
@@ -31,6 +35,8 @@ $(document).ready(function () {
 
 
     });
+    //Logud funktion
+    // Hentet fra Elena
     $("#logOutLink").on("click", function(){
         SDK.logOut();
         window.location.href = "login.html";

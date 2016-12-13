@@ -4,27 +4,51 @@
 
 $(document).ready(function () {
 
-    var lectureId = window.location.hash.substr(1); //Tager hash værdi fra url - kode fra stackoverflow
-    console.log(lectureId);
+    //Fires on page-load
+    SDK.LectureReview.getAll(function (err, data) {
+        if (err) throw err;
 
-//Fires on page-load for lectures
-    SDK.LectureReview.getAll(function(err, data){
-        if(err) throw err;
-        console.log(data);
+        /* var decrypted = encryptDecrypt(data);
+         decrypted = JSON.parse(decrypted);
+         */
 
         var $teacherReviewTableBody = $("#teacherReviewTableBody");
         data.forEach(function (review) {
 
-            // Tabellen som viser frem alle reviews til den lecturen.
+
             $teacherReviewTableBody.append(
                 "<tr>" +
                 "<td>" + review.lectureId + "</td>" +
                 "<td>" + review.userId + "</td>" +
                 "<td>" + review.comment + "</td>" +
                 "<td>" + review.rating + "</td>" +
-                "</tr>"
-            );
+                "<td>" + "<button class='delete' data-review=" + review.id + "> Slet </button>" + "</td>" +
+                "</tr>");
+            console.log('button');
+
+
+    $('#teacherReviewTableBody').on("click",".delete",function () {
+        var reviewId = $(this).data("review");
+        var deleteReview = {
+            reviewId: reviewId
+        };
+
+        SDK.DeleteReview.deleteReview(reviewId, function (err, reviewId) {
+            location.reload();
+            console.log("delete");
+        });
+
+    });
         });
     });
+
+//Logud funktion
+    $("#logOutLink").click(function () {
+        SDK.logOut();
+        window.location.href = "login.html";
+    })
 });
+
+
+
 

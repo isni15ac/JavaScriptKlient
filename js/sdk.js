@@ -36,17 +36,25 @@ var SDK = {
 
             }
         },
-//Metode som henter og opretter review(s)
+
+    /*UserReview: {
+        getAll: function (cb) {
+            SDK.request({method: "GET", url: "/review/user/" + SDK.Storage.load("userId"), headers: {filter: {include: ["id", "userId", "lectureId", "rating", "comment", "isDeleted"]}}}, cb);
+        },
+    },*/
+
+    //Metode som henter og opretter reviews
     LectureReview: {
         getAll: function (cb) {
             SDK.request({method: "GET",
                     url: "/review/lecture/" + SDK.Storage.load("lectureId"), headers: {filter: {include: ["id", "userId", "lectureId", "comment", "rating", "isDeleted"]}}}, cb);
             },
-        create: function (data, cb) {
-            SDK.request({method: "POST", url:"/" + SDK.Storage.load("type") + "/review/", data: data, }, cb);
+        addReview: function (data, cb) {
+            SDK.request({method: "POST", url: "/student/review/", data: data, }, cb);
         }
     },
 
+    //Metode til at slette reviews
     DeleteReview: {
         deleteReview: function (data, cb) {
             SDK.request({
@@ -54,7 +62,7 @@ var SDK = {
                     id: data
                 },
                 method: "DELETE",
-                url: "/deleteReview"
+                url: "/student/review/",
             }, cb);
         }
     },
@@ -69,9 +77,12 @@ var SDK = {
         }
     },
 
+    //Logud metode
     logOut: function () {
         SDK.Storage.remove("type");
         SDK.Storage.remove("userId");
+        SDK.Storage.remove("password");
+        SDK.Storage.remove("lectureId");
     },
 
 
@@ -94,8 +105,6 @@ var SDK = {
                     password: hashedPassWithSalt2
 
                 },
-
-
                 url: "/login", //det endpoint
                 method: "POST"
             },
@@ -108,15 +117,13 @@ var SDK = {
                 SDK.Storage.persist("userId", data.id);
                 SDK.Storage.persist("type", data.type);
 
-
-
                 cb(null, data);
 
             });
 
     },
 
-//Use localStorage to store data - you set and get items
+    //Bruger localStorage til at gemme/lagre data
     Storage: {
         prefix: "CourseStoreSDK",
         persist: function (key, value) {
@@ -136,7 +143,8 @@ var SDK = {
             window.localStorage.removeItem(this.prefix + key);
         }
     },
-//Kode for at kunne hashe passwordet for at logge ind uden at skulle bruge det hashede passwordet fra DB
+
+//Kode for at kunne hashe passwordet for at logge ind, uden at skulle bruge det hashede passwordet fra DB
     Decrypt: function (string) {
         var Base64 = {
             _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",

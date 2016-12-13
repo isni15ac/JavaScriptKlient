@@ -24,25 +24,14 @@ $(document).ready(function () {
 
 
       //Skelne mellem de aktører som logger ind
-        if (data.type =="admin") {
-          window.location.href="adminCourses.html";
-          window.alert("admin");
-      }
-      else if (data.type =="student"){
+       if (data.type =="student"){
           window.location.href="studentCourses.html";
             window.alert("Student");
 
-        }
-      else if(data.type == "teacher") {
+        } if(data.type == "teacher") {
           window.location.href = "teacherCourses.html";
             window.alert("Teacher");
-
         }
-      else{
-          window.alert("Der er en fejl")
-      }
-
     });
-
             });
 });
