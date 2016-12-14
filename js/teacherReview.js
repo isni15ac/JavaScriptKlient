@@ -12,10 +12,11 @@ $(document).ready(function () {
          decrypted = JSON.parse(decrypted);
          */
 
+        //Opretter variablen teacherReviewTableBody og kobler review til
         var $teacherReviewTableBody = $("#teacherReviewTableBody");
         data.forEach(function (review) {
 
-
+            //Tildeler tablen nogle værdier som hentes, samt en slet knap
             $teacherReviewTableBody.append(
                 "<tr>" +
                 "<td>" + review.lectureId + "</td>" +
@@ -26,7 +27,7 @@ $(document).ready(function () {
                 "</tr>");
             console.log('button');
 
-
+     //Opretter funktion til slet knap
     $('#teacherReviewTableBody').on("click",".delete",function () {
         var reviewId = $(this).data("review");
         var deleteReview = {

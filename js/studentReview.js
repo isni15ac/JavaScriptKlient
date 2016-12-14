@@ -5,16 +5,19 @@
 /*$(document).ready(function () {*/
 
 $(document).ready(function () {
+    var lecture = window.location.hash.substr(1); //Tager hash værdi fra url - hentet fra stackoverflow
+
 
 //Fires on page-load for lectures
     SDK.LectureReview.getAll(function(err, data){
         if(err) throw err;
         console.log(data);
 
+        //Opretter variablen tabel og sætter review på
             var $studentReviewTableBody = $("#studentReviewTableBody");
             data.forEach(function (review) {
 
-                // Tabellen som viser frem alle reviews til den lecturen.
+                // Tabel som viser reviews med tildelte værdier, samt en slet knap
                 $studentReviewTableBody.append(
                     "<tr>" +
                     "<td>" + review.lectureId + "</td>" +
@@ -25,7 +28,7 @@ $(document).ready(function () {
                     "</tr>"
                 );
 
-
+     //Opretter slet funktion til knap
     $('#studentReviewTableBody').on("click",".delete",function () {
         var reviewId = $(this).data("review");
         var deleteReview = { //creater et JSON obejct
@@ -33,30 +36,31 @@ $(document).ready(function () {
         };
 
         SDK.DeleteReview.deleteReview(reviewId, function (err, reviewId) {
-            /*location.reload();*/
+           location.reload();
             console.log("delete");
         });
     });
-            });
 
-//Creater a JSON obejct
-    function addReview() {
-        var review = {
-            comment: $("#comment").val(),
-            rating: $("#rating").val(),
-            userId: SDK.Storage.load("userId"),
-            lectureId: SDK.Storage.load("lectureId"),
+    //Funktion til at oprette et review
+        $("#createReviewButton").on("click", function(){
 
-        };
-        SDK.LectureReview.add(review, function (err, data) {
+            //Create JSON object
+            var review = {
+                comment: $("#comment").val(),
+                rating: $("#rating").val(),
+                userId:$("#userId").val(SDK.Storage.load("userId")),
+                lectureId:$("#lectureId").val(lecture),
+
+            };
             console.log(review);
-            /*location.reload();*/
 
+            SDK.LectureReview.create(review, function(err, review){
+                if(err) throw err;
+
+            });
         });
-        $("#createReviewBtn").click(function(e) {
-            e.preventDefault()
-        })
-    }
+
+    });
     });
 
     //Logud funktion

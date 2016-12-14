@@ -37,11 +37,11 @@ var SDK = {
             }
         },
 
-    /*UserReview: {
+    UserReview: {
         getAll: function (cb) {
             SDK.request({method: "GET", url: "/review/user/" + SDK.Storage.load("userId"), headers: {filter: {include: ["id", "userId", "lectureId", "rating", "comment", "isDeleted"]}}}, cb);
         },
-    },*/
+    },
 
     //Metode som henter og opretter reviews
     LectureReview: {
@@ -49,9 +49,13 @@ var SDK = {
             SDK.request({method: "GET",
                     url: "/review/lecture/" + SDK.Storage.load("lectureId"), headers: {filter: {include: ["id", "userId", "lectureId", "comment", "rating", "isDeleted"]}}}, cb);
             },
-        addReview: function (data, cb) {
-            SDK.request({method: "POST", url: "/student/review/", data: data, }, cb);
-        }
+        create: function (data, cb) {
+            SDK.request({
+                method: "POST",
+                url: "/student/review/",
+                data: data
+            }, cb);
+        },
     },
 
     //Metode til at slette reviews

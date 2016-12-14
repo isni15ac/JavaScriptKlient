@@ -40,7 +40,7 @@ $(document).ready(function () {
     });
     });
 
-    //Logout funktion - fører en til login siden
+    //Logud funktion - fører en til login siden
     //Hentet fra Elena
     $("#logOutLink").on("click", function(){
         SDK.logOut();

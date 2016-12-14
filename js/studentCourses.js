@@ -10,7 +10,6 @@ $(document).ready(function () {
         /*var decrypted = encryptDecrypt(data);
          decrypted = JSON.parse(decrypted);*/
 
-
         //Sætter courses på variablen coursesTableBody
         var $studentCoursesTableBody = $("#studentCoursesTableBody");
         courses.forEach(function (course) {
